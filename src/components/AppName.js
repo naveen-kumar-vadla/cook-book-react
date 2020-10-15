@@ -7,9 +7,9 @@ const Heading = styled.h1`
   & {
     color: #ffffff;
     text-align: center;
-    background-color: #222323;
     margin: 0;
     padding: 1.5vh;
+    border-bottom: 1px solid white;
   }
   & > a {
     color: #ffffff;

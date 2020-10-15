@@ -18,7 +18,7 @@ const RecipeCard = ({ className, id, name, imageUrl }) => {
 const StyledRecipeCard = styled(RecipeCard)`
   & {
     background-color: #ffffff;
-    border: 1px solid #aaaaaa;
+    border: 1px solid #ffffff;
     height: 30vh;
     width: 15vw;
     margin: 2rem;
@@ -42,7 +42,6 @@ const StyledRecipeCard = styled(RecipeCard)`
 `;
 
 const StyledContainer = styled.div`
-  background-color: #f5f5f5;
   display: flex;
   justify-content: flex-start;
   flex-flow: row wrap;
@@ -53,8 +52,7 @@ const StyledContainer = styled.div`
 const Recipies = ({ recipies }) => {
   let recipeCards = <h1>Loading ...</h1>;
   if (recipies != null) {
-    recipeCards = recipies
-      .map(recipe => (
+    recipeCards = recipies.map(recipe => (
       <StyledRecipeCard {...recipe} key={recipe.id} />
     ));
   }

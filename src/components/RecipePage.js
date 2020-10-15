@@ -6,12 +6,9 @@ import { useParams } from 'react-router-dom';
 import RecipeAPI from './RecipeAPI.js';
 
 const StyledContainer = styled.div`
-  background-color: #f5f5f5;
   display: flex;
   justify-content: flex-start;
   flex-flow: column wrap;
-  padding: 2rem 1rem;
-  margin: 2rem;
 `;
 
 const TopContainer = styled.div`
@@ -19,7 +16,7 @@ const TopContainer = styled.div`
   height: 40%;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #dddddd;
+  background-color: #222324;
 `;
 
 const BottomContainer = styled.div`
@@ -27,19 +24,20 @@ const BottomContainer = styled.div`
   padding: 3rem;
   height: 50%;
   display: flex;
-  border-radius: 1vh;
+  margin: 0 3rem;
 `;
 
 const RecipeName = styled.h1`
   text-align: center;
-  color: #610000;
+  color: #000000;
   margin: 0;
   text-transform: uppercase;
-  border-bottom: 1px solid #dddddd;
+  background-color: #ffffff;
 `;
 
 const RecipeImage = styled.img`
   height: 30vh;
+  width: 30vw;
   border-radius: 1vh;
 `;
 
