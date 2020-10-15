@@ -14,5 +14,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.get('/api/recipies', handlers.serveRecipies);
 app.get('/api/recipe/:id', handlers.serveRecipe);
+app.get('/api/fetchUser', handlers.serveUser);
 
 module.exports = app;
