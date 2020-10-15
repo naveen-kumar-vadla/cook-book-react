@@ -1,20 +1,9 @@
-const express = require('express');
+const axios = require('axios');
+const Auth = require('./auth');
 
-const data = require('./data.json');
+const { CLIENT_ID, CLIENT_SECRET, PORT } = require('./config');
 
-const app = express();
+const app = require('./routes');
 
-app.use((req, res, next) => {
-  console.log(req.method, req.url);
-  next();
-});
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.get('/api/recipies', (req, res) => res.json(data));
-app.get('/api/recipe/:id', (req, res) => {
-  const id = Number(req.params.id);
-  const recipe = data.find(recipe => recipe.id === id);
-  res.json(recipe);
-});
-
-app.listen(7000, () => console.log('listening on 7000 ....'));
+app.locals.auth = new Auth(CLIENT_ID, CLIENT_SECRET, axios);
+app.listen(PORT, () => process.stdout.write(`listening on ${PORT}\n`));
