@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import AppName from './AppName.js';
 import Recipies from './Recipies.js';
 import RecipeAPI from './RecipeAPI.js';
 
@@ -9,12 +8,7 @@ const HomePage = () => {
   useEffect(() => {
     RecipeAPI.fetchRecipies().then(setRecipies);
   }, []);
-  return (
-    <React.Fragment>
-      <AppName />
-      <Recipies recipies={recipies} />
-    </React.Fragment>
-  );
+  return <Recipies recipies={recipies} />;
 };
 
 export default HomePage;

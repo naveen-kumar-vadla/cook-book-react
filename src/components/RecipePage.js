@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 
-import AppName from './AppName.js';
 import RecipeAPI from './RecipeAPI.js';
 
 const StyledContainer = styled.div`
@@ -138,7 +137,6 @@ const RecipePage = () => {
   if (recipe == null) {
     return (
       <React.Fragment>
-        <AppName />
         <StyledContainer>
           <h1>Loading ...</h1>
         </StyledContainer>
@@ -146,20 +144,17 @@ const RecipePage = () => {
     );
   }
   return (
-    <React.Fragment>
-      <AppName />
-      <StyledContainer>
-        <RecipeName>{recipe.name}</RecipeName>
-        <TopContainer>
-          <RecipeImage src={recipe.imageUrl} alt={recipe.name} />
-          <RecipeInfo {...recipe} />
-        </TopContainer>
-        <BottomContainer>
-          <Ingredients {...recipe} />
-          <Instructions {...recipe} />
-        </BottomContainer>
-      </StyledContainer>
-    </React.Fragment>
+    <StyledContainer>
+      <RecipeName>{recipe.name}</RecipeName>
+      <TopContainer>
+        <RecipeImage src={recipe.imageUrl} alt={recipe.name} />
+        <RecipeInfo {...recipe} />
+      </TopContainer>
+      <BottomContainer>
+        <Ingredients {...recipe} />
+        <Instructions {...recipe} />
+      </BottomContainer>
+    </StyledContainer>
   );
 };
 
