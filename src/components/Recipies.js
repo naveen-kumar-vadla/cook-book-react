@@ -53,7 +53,8 @@ const StyledContainer = styled.div`
 const Recipies = ({ recipies }) => {
   let recipeCards = <h1>Loading ...</h1>;
   if (recipies != null) {
-    recipeCards = recipies.map(recipe => (
+    recipeCards = recipies
+      .map(recipe => (
       <StyledRecipeCard {...recipe} key={recipe.id} />
     ));
   }
