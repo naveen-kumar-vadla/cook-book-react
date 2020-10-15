@@ -8,9 +8,12 @@ const RecipeCard = ({ name, imageUrl }) => (
 );
 
 const Recipies = ({ recipies }) => {
-  const recipeCards = recipies.map((recipe, i) => (
-    <RecipeCard {...recipe} key={i} />
-  ));
+  let recipeCards = <h1>Loading ...</h1>;
+  if (recipies != null) {
+    recipeCards = recipies.map(recipe => (
+      <RecipeCard {...recipe} key={recipe.id} />
+    ));
+  }
   return <div className='recipe-container'>{recipeCards}</div>;
 };
 
