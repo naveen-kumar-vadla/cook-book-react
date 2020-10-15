@@ -1,12 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 
-const RecipeCard = ({ className, name, imageUrl }) => {
+const RecipeCard = ({ className, id, name, imageUrl }) => {
   const recipeName = name.length > 50 ? `${name.slice(0, 50)} ...` : name;
   return (
     <div className={className}>
       <img src={imageUrl} alt={name}></img>
-      <h3>{recipeName}</h3>
+      <Link to={`/recipe/${id}`}>
+        <h3>{recipeName}</h3>
+      </Link>
     </div>
   );
 };
@@ -24,7 +28,11 @@ const StyledRecipeCard = styled(RecipeCard)`
     height: 80%;
     width: 100%;
   }
-  & > h3 {
+  & > a {
+    text-decoration: none;
+  }
+  & > a > h3 {
+    color: black;
     margin: 0;
     text-transform: uppercase;
     font-size: 0.8rem;
