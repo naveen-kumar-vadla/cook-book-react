@@ -17,4 +17,5 @@ app.get('/api/recipe/:id', handlers.serveRecipe);
 app.get('/api/fetchUser', handlers.serveUser);
 app.get('/api/signIn', handlers.authorizeUser);
 app.get('/api/oauth-callback', handlers.loginUser);
+app.get('/api/profile/:username', handlers.serveUserProfile);
 module.exports = app;

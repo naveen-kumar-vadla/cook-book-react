@@ -27,7 +27,6 @@ const authorizeUser = (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  console.log('HOMEPAGE_URL', HOMEPAGE_URL);
   const { code, error } = req.query;
   if (error) return res.redirect(HOMEPAGE_URL);
   const { auth } = req.app.locals;
@@ -38,6 +37,13 @@ const loginUser = async (req, res) => {
   return res.redirect(HOMEPAGE_URL);
 };
 
+const serveUserProfile = (req, res) => {
+  const username = req.params.username;
+  const user = database.fetchUser('username', username);
+  user.recipies = database.fetchUserRecipies(user.id);
+  res.json(user);
+};
+
 module.exports = {
   logger,
   serveRecipies,
@@ -45,4 +51,5 @@ module.exports = {
   serveUser,
   authorizeUser,
   loginUser,
+  serveUserProfile,
 };

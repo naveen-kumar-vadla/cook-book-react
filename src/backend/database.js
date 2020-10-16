@@ -25,10 +25,16 @@ const saveUser = ({ name, login: username, avatar_url: imageUrl }) => {
   return user;
 };
 
+const fetchUserRecipies = userId => {
+  const recipies = fetchRecipies();
+  return recipies.filter(recipe => recipe.userId === userId);
+};
+
 module.exports = {
   fetchRecipies,
   fetchUser,
   fetchRecipe,
   fetchUsers,
   saveUser,
+  fetchUserRecipies,
 };
