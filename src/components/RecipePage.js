@@ -73,8 +73,12 @@ const IngredientsContainer = styled.div`
 const UserInfo = styled.h3`
   & {
     display: flex;
+    justify-content: space-between;
   }
   & > div {
+    display: flex;
+  }
+  & .profile-pic {
     position: relative;
     height: 3rem;
     width: 3rem;
@@ -84,11 +88,11 @@ const UserInfo = styled.h3`
     background-color: gray;
     overflow: hidden;
   }
-  & > div > img {
+  & .profile-pic > img {
     width: 100%;
     height: 100%;
   }
-  & > div > span {
+  & .profile-pic > span {
     color: #ffffff;
     text-align: center;
     position: absolute;
@@ -96,13 +100,20 @@ const UserInfo = styled.h3`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  & > a {
+  & > div > a {
     margin: 0.7rem 0rem;
     text-decoration: none;
   }
-  & > a > span {
+  & > div > a > span {
     color: #ffffff;
     text-transform: capitalize;
+  }
+  & img {
+    cursor: pointer;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    color: white;
   }
 `;
 
@@ -123,6 +134,16 @@ const extractInitials = function (name) {
   return profileName.toUpperCase();
 };
 
+const copyUrl = setIsCopied => {
+  setIsCopied(true);
+  var Url = document.getElementById('url');
+  Url.style['display'] = 'block';
+  Url.innerHTML = window.location.href;
+  Url.select();
+  document.execCommand('copy');
+  Url.style['display'] = 'none';
+};
+
 const RecipeInfo = ({
   category,
   serves,
@@ -131,19 +152,42 @@ const RecipeInfo = ({
   totalTime,
   user,
 }) => {
+  const [isCopied, setIsCopied] = useState(false);
   return (
     <div style={{ margin: '1rem 3rem 0 0' }}>
       <UserInfo>
         <div>
-          {user.imageUrl ? (
-            <img src={user.imageUrl} alt={user.username}></img>
-          ) : (
-            <span>{extractInitials(user.name)}</span>
-          )}
+          <div className='profile-pic'>
+            {user.imageUrl ? (
+              <img src={user.imageUrl} alt={user.username}></img>
+            ) : (
+              <span>{extractInitials(user.name)}</span>
+            )}
+          </div>
+          <Link to={`/profile/${user.username}`}>
+            <span>{user.name}</span>
+          </Link>
         </div>
-        <Link to={`/profile/${user.username}`}>
-          <span>{user.name}</span>
-        </Link>
+        <div>
+          {isCopied ? (
+            <img
+              src='https://www.freepnglogos.com/uploads/tick-png/image-tick-mark-icon-png-good-luck-charlie-wiki-2.png'
+              alt='copied'
+            ></img>
+          ) : (
+            <img
+              onClick={() => copyUrl(setIsCopied)}
+              src='https://www.freepnglogos.com/uploads/share-png/android-blue-circle-network-share-sharing-social-icon-5.png'
+              alt='copy'
+            ></img>
+          )}
+          <textarea
+            id='url'
+            rows='3'
+            cols='30'
+            style={{ display: 'none' }}
+          ></textarea>
+        </div>
       </UserInfo>
       <InfoTable>
         <InfoItem header='Category : ' value={category} />
