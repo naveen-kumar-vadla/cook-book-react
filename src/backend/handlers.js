@@ -16,10 +16,12 @@ const serveUser = (req, res) => {
 };
 
 const serveRecipe = (req, res) => {
+  const userId = Number(req.cookies.userId);
   const id = Number(req.params.id);
   const recipe = database.fetchRecipe(id);
   const user = database.fetchUser('id', recipe.userId);
-  res.json({ ...recipe, user });
+  const isCollected = database.isCollected(userId, id);
+  res.json({ ...recipe, user, isCollected });
 };
 
 const authorizeUser = (req, res) => {
@@ -58,6 +60,15 @@ const serveUserCollection = (req, res) => {
   res.json(collection);
 };
 
+const toggleCollect = (req, res) => {
+  const userId = Number(req.cookies.userId);
+  if (isNaN(userId)) return res.json({ isCollected: false });
+  const id = Number(req.params.id);
+  database.toggleCollect(userId, id);
+  const isCollected = database.isCollected(userId, id);
+  res.json({ isCollected });
+};
+
 module.exports = {
   logger,
   serveRecipies,
@@ -68,4 +79,5 @@ module.exports = {
   serveUserProfile,
   logout,
   serveUserCollection,
+  toggleCollect,
 };

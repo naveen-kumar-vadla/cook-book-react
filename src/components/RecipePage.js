@@ -108,12 +108,19 @@ const UserInfo = styled.h3`
     color: #ffffff;
     text-transform: capitalize;
   }
-  & img {
+  & .share-action {
     cursor: pointer;
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
     color: white;
+    margin: 0 1rem;
+  }
+  & .collect-action {
+    cursor: pointer;
+    height: 3rem;
+    width: 3rem;
+    margin: 0 1rem;
   }
 `;
 
@@ -135,13 +142,20 @@ const extractInitials = function (name) {
 };
 
 const copyUrl = setIsCopied => {
-  setIsCopied(true);
+  setIsCopied(s => !s);
   var Url = document.getElementById('url');
   Url.style['display'] = 'block';
   Url.innerHTML = window.location.href;
   Url.select();
   document.execCommand('copy');
   Url.style['display'] = 'none';
+};
+
+const toggleCollect = (id, setIsRecipeCollected) => {
+  RecipeAPI.toggleCollect(id).then(({ isCollected }) => {
+    console.log('isCollected', isCollected);
+    setIsRecipeCollected(isCollected);
+  });
 };
 
 const RecipeInfo = ({
@@ -151,8 +165,11 @@ const RecipeInfo = ({
   cookTime,
   totalTime,
   user,
+  isCollected,
+  id,
 }) => {
   const [isCopied, setIsCopied] = useState(false);
+  const [isRecipeCollected, setIsRecipeCollected] = useState(isCollected);
   return (
     <div style={{ margin: '1rem 3rem 0 0' }}>
       <UserInfo>
@@ -168,14 +185,17 @@ const RecipeInfo = ({
             <span>{user.name}</span>
           </Link>
         </div>
-        <div>
+        <div className='actions'>
           {isCopied ? (
             <img
+              className='share-action'
+              onClick={() => copyUrl(setIsCopied)}
               src='https://www.freepnglogos.com/uploads/tick-png/image-tick-mark-icon-png-good-luck-charlie-wiki-2.png'
               alt='copied'
             ></img>
           ) : (
             <img
+              className='share-action'
               onClick={() => copyUrl(setIsCopied)}
               src='https://www.freepnglogos.com/uploads/share-png/android-blue-circle-network-share-sharing-social-icon-5.png'
               alt='copy'
@@ -187,6 +207,21 @@ const RecipeInfo = ({
             cols='30'
             style={{ display: 'none' }}
           ></textarea>
+          {isRecipeCollected ? (
+            <img
+              className='collect-action'
+              onClick={() => toggleCollect(id, setIsRecipeCollected)}
+              src='https://cdn2.iconfinder.com/data/icons/flat-master-3/32/bookmark_green-512.png'
+              alt='collected'
+            ></img>
+          ) : (
+            <img
+              className='collect-action'
+              onClick={() => toggleCollect(id, setIsRecipeCollected)}
+              src='https://cdn0.iconfinder.com/data/icons/bookmarks-tags-6/60/bookmark__book__favorite__tag__ribbon-512.png'
+              alt='collect'
+            ></img>
+          )}
         </div>
       </UserInfo>
       <InfoTable>

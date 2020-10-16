@@ -30,6 +30,23 @@ const fetchUserRecipies = userId => {
   return recipies.filter(recipe => recipe.userId === userId);
 };
 
+const isCollected = (userId, recipeId) => {
+  const user = fetchUser('id', userId);
+  return user.collection && user.collection.includes(recipeId);
+};
+
+const toggleCollect = (userId, recipeId) => {
+  const user = fetchUser('id', userId);
+  if (isCollected(userId, recipeId)) {
+    user.collection = user.collection.filter(id => id !== recipeId);
+  } else {
+    user.collection.push(recipeId);
+  }
+  const users = fetchUsers().filter(user => user.id !== userId);
+  users.push(user);
+  storeUsers(users);
+};
+
 module.exports = {
   fetchRecipies,
   fetchUser,
@@ -37,4 +54,6 @@ module.exports = {
   fetchUsers,
   saveUser,
   fetchUserRecipies,
+  isCollected,
+  toggleCollect,
 };

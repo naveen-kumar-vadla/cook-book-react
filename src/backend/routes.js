@@ -20,5 +20,6 @@ app.get('/api/signIn', handlers.authorizeUser);
 app.get('/api/logout', handlers.logout);
 app.get('/api/oauth-callback', handlers.loginUser);
 app.get('/api/profile/:username', handlers.serveUserProfile);
+app.get('/api/toggleCollect/:id', handlers.toggleCollect);
 
 module.exports = app;
