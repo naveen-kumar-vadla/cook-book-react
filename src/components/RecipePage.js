@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import RecipeAPI from './RecipeAPI.js';
 
@@ -12,7 +12,6 @@ const StyledContainer = styled.div`
 `;
 
 const TopContainer = styled.div`
-  padding: 3rem;
   height: 40%;
   display: flex;
   justify-content: space-between;
@@ -24,7 +23,7 @@ const BottomContainer = styled.div`
   padding: 3rem;
   height: 50%;
   display: flex;
-  margin: 0 3rem;
+  margin: 3rem;
 `;
 
 const RecipeName = styled.h1`
@@ -39,6 +38,7 @@ const RecipeImage = styled.img`
   height: 30vh;
   width: 30vw;
   border-radius: 1vh;
+  margin: 3rem;
 `;
 
 const InfoTable = styled.div`
@@ -70,6 +70,42 @@ const IngredientsContainer = styled.div`
   padding-right: 3%;
 `;
 
+const UserInfo = styled.h3`
+  & {
+    display: flex;
+  }
+  & > div {
+    position: relative;
+    height: 3rem;
+    width: 3rem;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    margin-right: 1rem;
+    background-color: gray;
+    overflow: hidden;
+  }
+  & > div > img {
+    width: 100%;
+    height: 100%;
+  }
+  & > div > span {
+    color: #ffffff;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  & > a {
+    margin: 0.7rem 0rem;
+    text-decoration: none;
+  }
+  & > a > span {
+    color: #ffffff;
+    text-transform: capitalize;
+  }
+`;
+
 const InfoItem = ({ header, value }) => (
   <StyledInfoItem>
     <InfoItemHeader>{header}</InfoItemHeader>
@@ -77,24 +113,55 @@ const InfoItem = ({ header, value }) => (
   </StyledInfoItem>
 );
 
-const RecipeInfo = ({ category, serves, prepTime, cookTime, totalTime }) => {
+const extractInitials = function (name) {
+  const firstLetterIdx = 0;
+  const [firstName, secondName] = name.split(' ');
+  const firstLetter = firstName[firstLetterIdx];
+  const profileName = secondName
+    ? firstLetter + secondName[firstLetterIdx]
+    : firstLetter;
+  return profileName.toUpperCase();
+};
+
+const RecipeInfo = ({
+  category,
+  serves,
+  prepTime,
+  cookTime,
+  totalTime,
+  user,
+}) => {
   return (
-    <InfoTable>
-      <InfoItem header='Category : ' value={category} />
-      <InfoItem header='Serves : ' value={serves} />
-      <InfoItem
-        header='Preparation Time : '
-        value={prepTime ? `${prepTime} minutes` : prepTime}
-      />
-      <InfoItem
-        header='Cooking Time : '
-        value={cookTime ? `${cookTime} minutes` : cookTime}
-      />
-      <InfoItem
-        header='Ready In : '
-        value={totalTime ? `${totalTime} minutes` : totalTime}
-      />
-    </InfoTable>
+    <div style={{ margin: '1rem 3rem 0 0' }}>
+      <UserInfo>
+        <div>
+          {user.imageUrl ? (
+            <img src={user.imageUrl} alt={user.username}></img>
+          ) : (
+            <span>{extractInitials(user.name)}</span>
+          )}
+        </div>
+        <Link to={`/profile/${user.username}`}>
+          <span>{user.name}</span>
+        </Link>
+      </UserInfo>
+      <InfoTable>
+        <InfoItem header='Category : ' value={category} />
+        <InfoItem header='Serves : ' value={serves} />
+        <InfoItem
+          header='Preparation Time : '
+          value={prepTime ? `${prepTime} minutes` : prepTime}
+        />
+        <InfoItem
+          header='Cooking Time : '
+          value={cookTime ? `${cookTime} minutes` : cookTime}
+        />
+        <InfoItem
+          header='Ready In : '
+          value={totalTime ? `${totalTime} minutes` : totalTime}
+        />
+      </InfoTable>
+    </div>
   );
 };
 

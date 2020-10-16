@@ -18,7 +18,8 @@ const serveUser = (req, res) => {
 const serveRecipe = (req, res) => {
   const id = Number(req.params.id);
   const recipe = database.fetchRecipe(id);
-  res.json(recipe);
+  const user = database.fetchUser('id', recipe.userId);
+  res.json({ ...recipe, user });
 };
 
 const authorizeUser = (req, res) => {
@@ -40,8 +41,8 @@ const loginUser = async (req, res) => {
 const serveUserProfile = (req, res) => {
   const username = req.params.username;
   const user = database.fetchUser('username', username);
-  user.recipies = database.fetchUserRecipies(user.id);
-  res.json(user);
+  const recipies = database.fetchUserRecipies(user.id);
+  res.json({ ...user, recipies });
 };
 
 module.exports = {
