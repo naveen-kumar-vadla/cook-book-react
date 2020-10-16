@@ -125,6 +125,7 @@ const AppName = () => {
         </h3>
         <div class='dropup-content'>
           <Link to={`/profile/${user.username}`}>Profile</Link>
+          <a href='http://localhost:7000/api/logout'>Logout</a>
         </div>
       </div>
     </Heading>

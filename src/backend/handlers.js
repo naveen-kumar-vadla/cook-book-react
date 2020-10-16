@@ -45,6 +45,12 @@ const serveUserProfile = (req, res) => {
   res.json({ ...user, recipies });
 };
 
+const logout = (req, res) => {
+  res.clearCookie('userId');
+  console.log('HOMEPAGE_URL', HOMEPAGE_URL);
+  res.redirect(HOMEPAGE_URL);
+};
+
 module.exports = {
   logger,
   serveRecipies,
@@ -53,4 +59,5 @@ module.exports = {
   authorizeUser,
   loginUser,
   serveUserProfile,
+  logout,
 };
