@@ -123,8 +123,9 @@ const AppName = () => {
             )}
           </div>
         </h3>
-        <div class='dropup-content'>
+        <div className='dropup-content'>
           <Link to={`/profile/${user.username}`}>Profile</Link>
+          <Link to='/collection'>Collection</Link>
           <a href='http://localhost:7000/api/logout'>Logout</a>
         </div>
       </div>

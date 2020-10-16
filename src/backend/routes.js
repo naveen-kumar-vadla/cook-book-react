@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/api/recipies', handlers.serveRecipies);
 app.get('/api/recipe/:id', handlers.serveRecipe);
 app.get('/api/fetchUser', handlers.serveUser);
+app.get('/api/fetUserCollection', handlers.serveUserCollection);
 app.get('/api/signIn', handlers.authorizeUser);
 app.get('/api/logout', handlers.logout);
 app.get('/api/oauth-callback', handlers.loginUser);

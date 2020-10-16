@@ -51,6 +51,13 @@ const logout = (req, res) => {
   res.redirect(HOMEPAGE_URL);
 };
 
+const serveUserCollection = (req, res) => {
+  const userId = Number(req.cookies.userId);
+  const user = database.fetchUser('id', userId);
+  const collection = user.collection.map(database.fetchRecipe);
+  res.json(collection);
+};
+
 module.exports = {
   logger,
   serveRecipies,
@@ -60,4 +67,5 @@ module.exports = {
   loginUser,
   serveUserProfile,
   logout,
+  serveUserCollection,
 };
