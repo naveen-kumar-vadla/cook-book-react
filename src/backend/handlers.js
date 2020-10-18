@@ -49,7 +49,6 @@ const serveUserProfile = (req, res) => {
 
 const logout = (req, res) => {
   res.clearCookie('userId');
-  console.log('HOMEPAGE_URL', HOMEPAGE_URL);
   res.redirect(HOMEPAGE_URL);
 };
 

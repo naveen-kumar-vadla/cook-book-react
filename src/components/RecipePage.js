@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
 
 import RecipeAPI from './RecipeAPI.js';
+import notCollectedIcon from '../images/not-collected.svg';
+import CollectedIcon from '../images/collected.svg';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -14,7 +16,7 @@ const StyledContainer = styled.div`
 const TopContainer = styled.div`
   height: 40%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: #222324;
 `;
 
@@ -167,6 +169,7 @@ const RecipeInfo = ({
   user,
   isCollected,
   id,
+  loggedUser
 }) => {
   const [isCopied, setIsCopied] = useState(false);
   const [isRecipeCollected, setIsRecipeCollected] = useState(isCollected);
@@ -189,7 +192,6 @@ const RecipeInfo = ({
           {isCopied ? (
             <img
               className='share-action'
-              onClick={() => copyUrl(setIsCopied)}
               src='https://www.freepnglogos.com/uploads/tick-png/image-tick-mark-icon-png-good-luck-charlie-wiki-2.png'
               alt='copied'
             ></img>
@@ -207,21 +209,21 @@ const RecipeInfo = ({
             cols='30'
             style={{ display: 'none' }}
           ></textarea>
-          {isRecipeCollected ? (
+          {loggedUser.username ? isRecipeCollected ? (
             <img
               className='collect-action'
               onClick={() => toggleCollect(id, setIsRecipeCollected)}
-              src='https://cdn2.iconfinder.com/data/icons/flat-master-3/32/bookmark_green-512.png'
+              src={CollectedIcon}
               alt='collected'
             ></img>
           ) : (
             <img
               className='collect-action'
               onClick={() => toggleCollect(id, setIsRecipeCollected)}
-              src='https://cdn0.iconfinder.com/data/icons/bookmarks-tags-6/60/bookmark__book__favorite__tag__ribbon-512.png'
+              src={notCollectedIcon}
               alt='collect'
             ></img>
-          )}
+          ) : ''}
         </div>
       </UserInfo>
       <InfoTable>
@@ -275,10 +277,12 @@ const Instructions = ({ instructions }) => {
 const RecipePage = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
+  const [loggedUser, setUser] = useState(null);
   useEffect(() => {
+    RecipeAPI.fetchUser().then(setUser);
     RecipeAPI.fetchRecipe(id).then(setRecipe);
   }, [id]);
-  if (recipe == null) {
+  if (recipe == null || loggedUser==null) {
     return (
       <React.Fragment>
         <StyledContainer>
@@ -292,7 +296,7 @@ const RecipePage = () => {
       <RecipeName>{recipe.name}</RecipeName>
       <TopContainer>
         <RecipeImage src={recipe.imageUrl} alt={recipe.name} />
-        <RecipeInfo {...recipe} />
+        <RecipeInfo {...recipe} loggedUser={loggedUser}/>
       </TopContainer>
       <BottomContainer>
         <Ingredients {...recipe} />

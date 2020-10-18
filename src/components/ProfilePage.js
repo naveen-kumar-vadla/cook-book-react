@@ -16,8 +16,9 @@ const TopContainer = styled.div`
   padding: 3rem;
   height: 40%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: #222324;
+  border-bottom:1px solid #ffffff;
 `;
 
 const UserImage = styled.div`
@@ -73,6 +74,7 @@ const RecipiesHeader = styled.h1`
   text-align: center;
   color: #000000;
   margin: 0;
+  margin-top: 1rem;
   text-transform: uppercase;
   background-color: #ffffff;
   width: 30vw;
