@@ -49,14 +49,14 @@ const StyledContainer = styled.div`
   margin: 2rem;
 `;
 
-const Recipies = ({ recipies }) => {
+const Recipes = ({ recipes }) => {
   let recipeCards = <h1>Loading ...</h1>;
-  if (recipies != null) {
-    recipeCards = recipies.map(recipe => (
+  if (recipes != null) {
+    recipeCards = recipes.map(recipe => (
       <StyledRecipeCard {...recipe} key={recipe.id} />
     ));
   }
   return <StyledContainer>{recipeCards}</StyledContainer>;
 };
 
-export default Recipies;
+export default Recipes;

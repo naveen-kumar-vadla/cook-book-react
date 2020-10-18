@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-import Recipies from './Recipies.js';
+import Recipes from './Recipes.js';
 import RecipeAPI from './RecipeAPI.js';
 
 const HomePage = () => {
-  const [recipies, setRecipies] = useState(null);
+  const [recipes, setRecipes] = useState(null);
   useEffect(() => {
-    RecipeAPI.fetchRecipies().then(setRecipies);
+    RecipeAPI.fetchRecipes().then(setRecipes);
   }, []);
-  return <Recipies recipies={recipies} />;
+  return <Recipes recipes={recipes} />;
 };
 
 export default HomePage;

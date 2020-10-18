@@ -1,14 +1,14 @@
 const fs = require('fs');
 
-const fetchRecipies = () => require('./data.json');
-const storeRecipies = recipies =>
-  fs.writeFileSync('./data.json', JSON.stringify(recipies));
+const fetchRecipes = () => require('./data.json');
+const storeRecipes = recipes =>
+  fs.writeFileSync('./data.json', JSON.stringify(recipes));
 
 const fetchUsers = () => require('./users.json');
 const storeUsers = users =>
   fs.writeFileSync('./users.json', JSON.stringify(users));
 
-const fetchRecipe = id => fetchRecipies().find(recipe => recipe.id === id);
+const fetchRecipe = id => fetchRecipes().find(recipe => recipe.id === id);
 
 const fetchUser = (fieldToMatch, value) => {
   const users = fetchUsers();
@@ -25,9 +25,9 @@ const saveUser = ({ name, login: username, avatar_url: imageUrl }) => {
   return user;
 };
 
-const fetchUserRecipies = userId => {
-  const recipies = fetchRecipies();
-  return recipies.filter(recipe => recipe.userId === userId);
+const fetchUserRecipes = userId => {
+  const recipes = fetchRecipes();
+  return recipes.filter(recipe => recipe.userId === userId);
 };
 
 const isCollected = (userId, recipeId) => {
@@ -48,12 +48,12 @@ const toggleCollect = (userId, recipeId) => {
 };
 
 module.exports = {
-  fetchRecipies,
+  fetchRecipes,
   fetchUser,
   fetchRecipe,
   fetchUsers,
   saveUser,
-  fetchUserRecipies,
+  fetchUserRecipes,
   isCollected,
   toggleCollect,
 };

@@ -7,7 +7,7 @@ const logger = (req, res, next) => {
   next();
 };
 
-const serveRecipies = (req, res) => res.json(database.fetchRecipies());
+const serveRecipes = (req, res) => res.json(database.fetchRecipes());
 
 const serveUser = (req, res) => {
   const userId = Number(req.cookies.userId);
@@ -43,8 +43,8 @@ const loginUser = async (req, res) => {
 const serveUserProfile = (req, res) => {
   const username = req.params.username;
   const user = database.fetchUser('username', username);
-  const recipies = database.fetchUserRecipies(user.id);
-  res.json({ ...user, recipies });
+  const recipes = database.fetchUserRecipes(user.id);
+  res.json({ ...user, recipes });
 };
 
 const logout = (req, res) => {
@@ -70,7 +70,7 @@ const toggleCollect = (req, res) => {
 
 module.exports = {
   logger,
-  serveRecipies,
+  serveRecipes,
   serveRecipe,
   serveUser,
   authorizeUser,

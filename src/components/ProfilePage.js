@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Recipies from './Recipies.js';
+import Recipes from './Recipes.js';
 import RecipeAPI from './RecipeAPI.js';
 import NoMatch from './NoMatch.js';
 
@@ -70,7 +70,7 @@ const StyledInfoItem = styled.div`
   }
 `;
 
-const RecipiesHeader = styled.h1`
+const RecipesHeader = styled.h1`
   text-align: center;
   color: #000000;
   margin: 0;
@@ -133,8 +133,8 @@ const ProfilePage = () => {
         </UserImage>
         <ProfileInfo {...user} />
       </TopContainer>
-      <RecipiesHeader>Recepies</RecipiesHeader>
-      <Recipies recipies={user.recipies} />
+      <RecipesHeader>Recipes</RecipesHeader>
+      <Recipes recipes={user.recipes} />
     </StyledContainer>
   );
 };

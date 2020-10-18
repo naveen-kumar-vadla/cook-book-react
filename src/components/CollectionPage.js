@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 
-import Recipies from './Recipies.js';
+import Recipes from './Recipes.js';
 import RecipeAPI from './RecipeAPI.js';
 
 const Header = styled.h1`
@@ -21,7 +21,7 @@ const HomePage = () => {
   return (
     <div>
       <Header>Collection</Header>
-      <Recipies recipies={collection} />
+      <Recipes recipes={collection} />
     </div>
   );
 };
