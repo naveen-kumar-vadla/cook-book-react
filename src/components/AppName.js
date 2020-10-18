@@ -103,7 +103,7 @@ const AppName = () => {
           <Link to='/'>Cook Book</Link>
         </h1>
         <h4>
-          <a href='http://localhost:7000/api/signin'>Sign In</a>
+          <a href='http://localhost:7000/api/signin'>Log In</a>
         </h4>
       </Heading>
     );
