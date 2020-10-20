@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import styled from 'styled-components';
-
 import Recipes from './Recipes.js';
 import RecipeAPI from './RecipeAPI.js';
 import { PageHeader } from './styledComponents.js';
