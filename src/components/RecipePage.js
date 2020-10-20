@@ -7,35 +7,12 @@ import RecipeAPI from './RecipeAPI.js';
 import notCollectedIcon from '../images/not-collected.svg';
 import CollectedIcon from '../images/collected.svg';
 import BlankPageWithMessage from './BlankPageWithMessage.js';
-
-const StyledContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  flex-flow: column wrap;
-`;
-
-const TopContainer = styled.div`
-  height: 40%;
-  display: flex;
-  justify-content: space-around;
-  background-color: #222324;
-`;
-
-const BottomContainer = styled.div`
-  background-color: white;
-  padding: 3rem;
-  height: 50%;
-  display: flex;
-  margin: 3rem;
-`;
-
-const RecipeName = styled.h1`
-  text-align: center;
-  color: #000000;
-  margin: 0;
-  text-transform: uppercase;
-  background-color: #ffffff;
-`;
+import {
+  StyledContainer,
+  TopContainer,
+  BottomContainer,
+  PageHeader,
+} from './styledComponents.js';
 
 const RecipeImage = styled.img`
   height: 30vh;
@@ -62,7 +39,7 @@ const InfoItemHeader = styled.span`
   text-align: left;
 `;
 
-const Header = styled.h3`
+const MiniHeader = styled.h3`
   text-align: center;
   color: #610000;
 `;
@@ -259,7 +236,7 @@ const Ingredients = ({ ingredients }) => {
   ));
   return (
     <IngredientsContainer>
-      <Header>Ingredients</Header>
+      <MiniHeader>Ingredients</MiniHeader>
       <ol>{details}</ol>
     </IngredientsContainer>
   );
@@ -273,7 +250,7 @@ const Instructions = ({ instructions }) => {
   ));
   return (
     <div style={{ width: '70%' }}>
-      <Header>Instructions</Header>
+      <MiniHeader>Instructions</MiniHeader>
       <ol>{details}</ol>
     </div>
   );
@@ -291,7 +268,7 @@ const RecipePage = () => {
     return <BlankPageWithMessage message='Loading ...' />;
   return (
     <StyledContainer>
-      <RecipeName>{recipe.name}</RecipeName>
+      <PageHeader>{recipe.name}</PageHeader>
       <TopContainer>
         <RecipeImage src={recipe.imageUrl} alt={recipe.name} />
         <RecipeInfo {...recipe} loggedUser={loggedUser} />

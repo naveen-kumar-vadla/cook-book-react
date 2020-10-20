@@ -4,14 +4,7 @@ import styled from 'styled-components';
 
 import Recipes from './Recipes.js';
 import RecipeAPI from './RecipeAPI.js';
-
-const Header = styled.h1`
-  text-align: center;
-  color: #000000;
-  margin: 0;
-  text-transform: uppercase;
-  background-color: #ffffff;
-`;
+import { PageHeader } from './styledComponents.js';
 
 const HomePage = () => {
   const [collection, setcollection] = useState(null);
@@ -20,7 +13,7 @@ const HomePage = () => {
   }, []);
   return (
     <div>
-      <Header>Collection</Header>
+      <PageHeader>Collection</PageHeader>
       <Recipes recipes={collection} />
     </div>
   );

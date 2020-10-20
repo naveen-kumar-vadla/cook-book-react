@@ -5,21 +5,11 @@ import styled from 'styled-components';
 import Recipes from './Recipes.js';
 import RecipeAPI from './RecipeAPI.js';
 import BlankPageWithMessage from './BlankPageWithMessage.js';
-
-const StyledContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  flex-flow: column wrap;
-`;
-
-const TopContainer = styled.div`
-  padding: 3rem;
-  height: 40%;
-  display: flex;
-  justify-content: space-around;
-  background-color: #222324;
-  border-bottom: 1px solid #ffffff;
-`;
+import {
+  StyledContainer,
+  TopContainer,
+  PageHeader,
+} from './styledComponents.js';
 
 const UserImage = styled.div`
   & {
@@ -70,17 +60,6 @@ const StyledInfoItem = styled.div`
   }
 `;
 
-const RecipesHeader = styled.h1`
-  text-align: center;
-  color: #000000;
-  margin: 0;
-  margin-top: 1rem;
-  text-transform: uppercase;
-  background-color: #ffffff;
-  width: 30vw;
-  align-self: center;
-`;
-
 const InfoItem = ({ header, value }) => (
   <StyledInfoItem>
     <h4>{header}</h4>
@@ -128,7 +107,7 @@ const ProfilePage = () => {
         </UserImage>
         <ProfileInfo {...user} />
       </TopContainer>
-      <RecipesHeader>Recipes</RecipesHeader>
+      <PageHeader>Recipes</PageHeader>
       <Recipes recipes={user.recipes} />
     </StyledContainer>
   );

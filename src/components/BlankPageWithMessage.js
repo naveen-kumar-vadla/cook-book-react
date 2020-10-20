@@ -1,11 +1,9 @@
 import React from 'react';
 
 import styled from 'styled-components';
+import { StyledContainer } from './styledComponents.js';
 
-const StyledContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  flex-flow: column wrap;
+const Header = styled.h1`
   padding: 2rem 1rem;
   margin: 2rem;
   color: #ffffff;
@@ -15,7 +13,7 @@ const StyledContainer = styled.div`
 const BlankPageWithMessage = ({ message }) => {
   return (
     <StyledContainer>
-      <h1>{message}</h1>
+      <Header>{message}</Header>
     </StyledContainer>
   );
 };

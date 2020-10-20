@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import BlankPageWithMessage from './BlankPageWithMessage.js';
+import { StyledContainer } from './styledComponents.js';
 
 const RecipeCard = ({ className, id, name, imageUrl }) => {
   const recipeName = name.length > 50 ? `${name.slice(0, 50)} ...` : name;
@@ -43,12 +44,13 @@ const StyledRecipeCard = styled(RecipeCard)`
   }
 `;
 
-const StyledContainer = styled.div`
+const RecipesContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-flow: row wrap;
   padding: 2rem 1rem;
   margin: 2rem;
+  width: 100%;
 `;
 
 const Recipes = ({ recipes }) => {
@@ -56,7 +58,11 @@ const Recipes = ({ recipes }) => {
   const recipeCards = recipes.map(recipe => (
     <StyledRecipeCard {...recipe} key={recipe.id} />
   ));
-  return <StyledContainer>{recipeCards}</StyledContainer>;
+  return (
+    <StyledContainer>
+      <RecipesContainer className='recipes'>{recipeCards}</RecipesContainer>
+    </StyledContainer>
+  );
 };
 
 export default Recipes;
