@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Recipes from './Recipes.js';
 import RecipeAPI from './RecipeAPI.js';
-import NoMatch from './NoMatch.js';
+import BlankPageWithMessage from './BlankPageWithMessage.js';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const TopContainer = styled.div`
   display: flex;
   justify-content: space-around;
   background-color: #222324;
-  border-bottom:1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
 `;
 
 const UserImage = styled.div`
@@ -120,7 +120,7 @@ const ProfilePage = () => {
         <h1>Loading ...</h1>
       </StyledContainer>
     );
-  if (!user.username) return <NoMatch />;
+  if (!user.username) return <BlankPageWithMessage message='User Not Found' />;
   return (
     <StyledContainer>
       <TopContainer>

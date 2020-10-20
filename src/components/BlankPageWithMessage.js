@@ -12,12 +12,12 @@ const StyledContainer = styled.div`
   text-align: center;
 `;
 
-const NoMatch = () => {
+const BlankPageWithMessage = ({ message }) => {
   return (
     <StyledContainer>
-      <h1>404 Page Not Found</h1>
+      <h1>{message}</h1>
     </StyledContainer>
   );
 };
 
-export default NoMatch;
+export default BlankPageWithMessage;

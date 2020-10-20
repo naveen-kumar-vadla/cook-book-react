@@ -4,7 +4,7 @@ import './css/App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import HomePage from './components/HomePage.js';
-import NoMatch from './components/NoMatch.js';
+import BlankPageWithMessage from './components/BlankPageWithMessage.js';
 import RecipePage from './components/RecipePage.js';
 import ProfilePage from './components/ProfilePage.js';
 import CollectionPage from './components/CollectionPage.js';
@@ -27,7 +27,7 @@ const App = () => (
         <ProfilePage />
       </Route>
       <Route path='*'>
-        <NoMatch />
+        <BlankPageWithMessage message='404 Page Not Found' />
       </Route>
     </Switch>
   </Router>
