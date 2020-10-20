@@ -12,6 +12,8 @@ import {
   TopContainer,
   BottomContainer,
   PageHeader,
+  InfoTable,
+  StyledInfoItem,
 } from './styledComponents.js';
 import { extractInitials } from './helperFunctions.js';
 
@@ -20,24 +22,6 @@ const RecipeImage = styled.img`
   width: 30vw;
   border-radius: 1vh;
   margin: 3rem;
-`;
-
-const InfoTable = styled.div`
-  width: 35vw;
-  border-radius: 1vh;
-  padding: 2rem;
-  background-color: white;
-`;
-
-const StyledInfoItem = styled.div`
-  margin: 2.5%;
-  border-bottom: 1px solid #dddddd;
-  padding-bottom: 1%;
-`;
-
-const InfoItemHeader = styled.span`
-  font-weight: bold;
-  text-align: left;
 `;
 
 const MiniHeader = styled.h3`
@@ -105,13 +89,6 @@ const UserInfo = styled.h3`
   }
 `;
 
-const InfoItem = ({ header, value }) => (
-  <StyledInfoItem>
-    <InfoItemHeader>{header}</InfoItemHeader>
-    <span>{value}</span>
-  </StyledInfoItem>
-);
-
 const copyUrl = setIsCopied => {
   setIsCopied(s => !s);
   var Url = document.getElementById('url');
@@ -124,7 +101,6 @@ const copyUrl = setIsCopied => {
 
 const toggleCollect = (id, setIsRecipeCollected) => {
   RecipeAPI.toggleCollect(id).then(({ isCollected }) => {
-    console.log('isCollected', isCollected);
     setIsRecipeCollected(isCollected);
   });
 };
@@ -200,17 +176,17 @@ const RecipeInfo = ({
         </div>
       </UserInfo>
       <InfoTable>
-        <InfoItem header='Category : ' value={category} />
-        <InfoItem header='Serves : ' value={serves} />
-        <InfoItem
+        <StyledInfoItem header='Category : ' value={category} />
+        <StyledInfoItem header='Serves : ' value={serves} />
+        <StyledInfoItem
           header='Preparation Time : '
           value={prepTime ? `${prepTime} minutes` : prepTime}
         />
-        <InfoItem
+        <StyledInfoItem
           header='Cooking Time : '
           value={cookTime ? `${cookTime} minutes` : cookTime}
         />
-        <InfoItem
+        <StyledInfoItem
           header='Ready In : '
           value={totalTime ? `${totalTime} minutes` : totalTime}
         />
@@ -222,7 +198,7 @@ const RecipeInfo = ({
 const Ingredients = ({ ingredients }) => {
   const details = ingredients.map((ingredient, i) => (
     <li key={`ingredient-${i}`}>
-      <InfoItem value={ingredient} />
+      <StyledInfoItem value={ingredient} />
     </li>
   ));
   return (
@@ -236,7 +212,7 @@ const Ingredients = ({ ingredients }) => {
 const Instructions = ({ instructions }) => {
   const details = instructions.map((instruction, i) => (
     <li key={`instruction-${i}`}>
-      <InfoItem value={instruction} />
+      <StyledInfoItem value={instruction} />
     </li>
   ));
   return (

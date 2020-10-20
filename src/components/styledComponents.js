@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledContainer = styled.div`
@@ -31,4 +32,40 @@ const PageHeader = styled.h1`
   background-color: #ffffff;
 `;
 
-export { StyledContainer, TopContainer, BottomContainer, PageHeader };
+const InfoTable = styled.div`
+  width: 35vw;
+  padding: 2rem;
+  background-color: white;
+`;
+
+const InfoItem = ({ header, value, className }) => (
+  <div className={className}>
+    <span className='header'>{header}</span>
+    <span>{value}</span>
+  </div>
+);
+
+const StyledInfoItem = styled(InfoItem)`
+  & {
+    margin: 2.5%;
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 1%;
+  }
+  & .header {
+    font-weight: bold;
+    text-align: left;
+  }
+  & > span {
+    text-align: left;
+    text-transform: capitalize;
+  }
+`;
+
+export {
+  StyledContainer,
+  TopContainer,
+  BottomContainer,
+  PageHeader,
+  InfoTable,
+  StyledInfoItem,
+};

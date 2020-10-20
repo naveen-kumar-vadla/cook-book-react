@@ -9,6 +9,8 @@ import {
   StyledContainer,
   TopContainer,
   PageHeader,
+  InfoTable,
+  StyledInfoItem,
 } from './styledComponents.js';
 import { extractInitials } from './helperFunctions.js';
 
@@ -37,45 +39,24 @@ const UserImage = styled.div`
   }
 `;
 
-const InfoTable = styled.div`
-  width: 35vw;
-  padding: 2rem;
-  background-color: white;
-`;
-
-const StyledInfoItem = styled.div`
-  & {
-    margin: 2.5%;
-    border-bottom: 1px solid #dddddd;
-    padding-bottom: 1%;
-  }
-  & > h4 {
-    font-weight: bold;
-    text-align: left;
-    font-size: 1.7rem;
-  }
-  & > span {
-    text-align: left;
-    font-size: 1.5rem;
-    text-transform: capitalize;
-  }
-`;
-
-const InfoItem = ({ header, value }) => (
-  <StyledInfoItem>
-    <h4>{header}</h4>
-    <span>{value}</span>
-  </StyledInfoItem>
-);
-
 const ProfileInfo = ({ name, username }) => {
   return (
     <InfoTable>
-      <InfoItem header='Username : ' value={username}></InfoItem>
-      <InfoItem header='Name : ' value={name}></InfoItem>
+      <StyledInfoItem header='Username : ' value={username}></StyledInfoItem>
+      <StyledInfoItem header='Name : ' value={name}></StyledInfoItem>
     </InfoTable>
   );
 };
+
+const ProfileImage = ({ imageUrl, name }) => (
+  <UserImage>
+    {imageUrl ? (
+      <img src={imageUrl} alt={name} />
+    ) : (
+      <span>{extractInitials(name)}</span>
+    )}
+  </UserImage>
+);
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -83,19 +64,12 @@ const ProfilePage = () => {
   useEffect(() => {
     RecipeAPI.fetchUserProfile(username).then(setUser);
   }, [username]);
-  console.log('user', user);
   if (user == null) return <BlankPageWithMessage message='Loading ...' />;
   if (!user.username) return <BlankPageWithMessage message='User Not Found' />;
   return (
     <StyledContainer>
       <TopContainer>
-        <UserImage>
-          {user.imageUrl ? (
-            <img src={user.imageUrl} alt={user.username} />
-          ) : (
-            <span>{extractInitials(user.name)}</span>
-          )}
-        </UserImage>
+        <ProfileImage {...user} />
         <ProfileInfo {...user} />
       </TopContainer>
       <PageHeader>Recipes</PageHeader>
