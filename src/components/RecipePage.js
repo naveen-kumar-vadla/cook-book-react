@@ -35,21 +35,110 @@ const IngredientsContainer = styled.div`
   padding-right: 3%;
 `;
 
-const UserInfo = styled.h3`
+const copyUrl = setIsCopied => {
+  setIsCopied(s => !s);
+  var Url = document.getElementById('url');
+  Url.style['display'] = 'block';
+  Url.innerHTML = window.location.href;
+  Url.select();
+  document.execCommand('copy');
+  Url.style['display'] = 'none';
+};
+
+const toggleCollect = (id, setIsRecipeCollected) => {
+  RecipeAPI.toggleCollect(id).then(({ isCollected }) => {
+    setIsRecipeCollected(isCollected);
+  });
+};
+
+const getCopyAction = (isCopied, setIsCopied) => {
+  const copyAction = {};
+  copyAction.src = isCopied
+    ? 'https://www.freepnglogos.com/uploads/tick-png/image-tick-mark-icon-png-good-luck-charlie-wiki-2.png'
+    : 'https://www.freepnglogos.com/uploads/share-png/android-blue-circle-network-share-sharing-social-icon-5.png';
+  copyAction.alt = isCopied ? 'copied' : 'copy';
+  copyAction.onClick = isCopied ? () => {} : () => copyUrl(setIsCopied);
+  return copyAction;
+};
+
+const getCollectAction = (id, isRecipeCollected, setIsRecipeCollected) => {
+  const collectAction = {};
+  collectAction.src = isRecipeCollected ? CollectedIcon : notCollectedIcon;
+  collectAction.alt = isRecipeCollected ? 'collected' : 'collect';
+  collectAction.onClick = () => toggleCollect(id, setIsRecipeCollected);
+  return collectAction;
+};
+
+const UserActions = ({ isCollected, id, loggedUser }) => {
+  const [isCopied, setIsCopied] = useState(false);
+  const [isRecipeCollected, setIsRecipeCollected] = useState(isCollected);
+  const copyAction = getCopyAction(isCopied, setIsCopied);
+  const collectAction = getCollectAction(
+    id,
+    isRecipeCollected,
+    setIsRecipeCollected
+  );
+  return (
+    <div className='actions'>
+      <img className='share-action' alt='' {...copyAction}></img>
+      <textarea
+        id='url'
+        rows='3'
+        cols='30'
+        style={{ display: 'none' }}
+      ></textarea>
+      {loggedUser.username ? (
+        <img className='collect-action' alt='' {...collectAction}></img>
+      ) : (
+        <></>
+      )}
+    </div>
+  );
+};
+
+const PostedUserInfo = ({ className, ...user }) => {
+  return (
+    <div className={className}>
+      <MiniProfileImage {...user} />
+      <Link to={`/profile/${user.username}`}>
+        <span>{user.name}</span>
+      </Link>
+    </div>
+  );
+};
+
+const StyledUserInfo = styled(PostedUserInfo)`
   & {
     display: flex;
-    justify-content: space-between;
   }
-  & > div {
-    display: flex;
-  }
-  & > div > a {
+  & > a {
     margin: 0.7rem 0rem;
     text-decoration: none;
   }
-  & > div > a > span {
+  & > a > span {
     color: #ffffff;
     text-transform: capitalize;
+    font-weight: bold;
+  }
+  & > a > span:hover {
+    text-decoration: underline;
+  }
+`;
+
+const UserRow = ({ user, isCollected, id, loggedUser, className }) => {
+  return (
+    <div className={className}>
+      <StyledUserInfo {...user} />
+      <UserActions {...{ isCollected, id, loggedUser }} />
+    </div>
+  );
+};
+
+const StyledUserRow = styled(UserRow)`
+  & {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
   }
   & .share-action {
     cursor: pointer;
@@ -67,103 +156,24 @@ const UserInfo = styled.h3`
   }
 `;
 
-const copyUrl = setIsCopied => {
-  setIsCopied(s => !s);
-  var Url = document.getElementById('url');
-  Url.style['display'] = 'block';
-  Url.innerHTML = window.location.href;
-  Url.select();
-  document.execCommand('copy');
-  Url.style['display'] = 'none';
-};
-
-const toggleCollect = (id, setIsRecipeCollected) => {
-  RecipeAPI.toggleCollect(id).then(({ isCollected }) => {
-    setIsRecipeCollected(isCollected);
-  });
-};
-
-const RecipeInfo = ({
-  category,
-  serves,
-  prepTime,
-  cookTime,
-  totalTime,
-  user,
-  isCollected,
-  id,
-  loggedUser,
-}) => {
-  const [isCopied, setIsCopied] = useState(false);
-  const [isRecipeCollected, setIsRecipeCollected] = useState(isCollected);
+const RecipeStats = ({ category, serves, prepTime, cookTime, totalTime }) => {
   return (
-    <div style={{ margin: '1rem 3rem 0 0' }}>
-      <UserInfo>
-        <div>
-          <MiniProfileImage {...user} />
-          <Link to={`/profile/${user.username}`}>
-            <span>{user.name}</span>
-          </Link>
-        </div>
-        <div className='actions'>
-          {isCopied ? (
-            <img
-              className='share-action'
-              src='https://www.freepnglogos.com/uploads/tick-png/image-tick-mark-icon-png-good-luck-charlie-wiki-2.png'
-              alt='copied'
-            ></img>
-          ) : (
-            <img
-              className='share-action'
-              onClick={() => copyUrl(setIsCopied)}
-              src='https://www.freepnglogos.com/uploads/share-png/android-blue-circle-network-share-sharing-social-icon-5.png'
-              alt='copy'
-            ></img>
-          )}
-          <textarea
-            id='url'
-            rows='3'
-            cols='30'
-            style={{ display: 'none' }}
-          ></textarea>
-          {loggedUser.username ? (
-            isRecipeCollected ? (
-              <img
-                className='collect-action'
-                onClick={() => toggleCollect(id, setIsRecipeCollected)}
-                src={CollectedIcon}
-                alt='collected'
-              ></img>
-            ) : (
-              <img
-                className='collect-action'
-                onClick={() => toggleCollect(id, setIsRecipeCollected)}
-                src={notCollectedIcon}
-                alt='collect'
-              ></img>
-            )
-          ) : (
-            ''
-          )}
-        </div>
-      </UserInfo>
-      <InfoTable>
-        <StyledInfoItem header='Category : ' value={category} />
-        <StyledInfoItem header='Serves : ' value={serves} />
-        <StyledInfoItem
-          header='Preparation Time : '
-          value={prepTime ? `${prepTime} minutes` : prepTime}
-        />
-        <StyledInfoItem
-          header='Cooking Time : '
-          value={cookTime ? `${cookTime} minutes` : cookTime}
-        />
-        <StyledInfoItem
-          header='Ready In : '
-          value={totalTime ? `${totalTime} minutes` : totalTime}
-        />
-      </InfoTable>
-    </div>
+    <InfoTable>
+      <StyledInfoItem header='Category : ' value={category} />
+      <StyledInfoItem header='Serves : ' value={serves} />
+      <StyledInfoItem
+        header='Preparation Time : '
+        value={prepTime ? `${prepTime} minutes` : prepTime}
+      />
+      <StyledInfoItem
+        header='Cooking Time : '
+        value={cookTime ? `${cookTime} minutes` : cookTime}
+      />
+      <StyledInfoItem
+        header='Ready In : '
+        value={totalTime ? `${totalTime} minutes` : totalTime}
+      />
+    </InfoTable>
   );
 };
 
@@ -210,7 +220,10 @@ const RecipePage = () => {
       <PageHeader>{recipe.name}</PageHeader>
       <TopContainer>
         <RecipeImage src={recipe.imageUrl} alt={recipe.name} />
-        <RecipeInfo {...recipe} loggedUser={loggedUser} />
+        <div style={{ margin: '1rem 3rem 0 0' }}>
+          <StyledUserRow {...recipe} loggedUser={loggedUser} />
+          <RecipeStats {...recipe} />
+        </div>
       </TopContainer>
       <BottomContainer>
         <Ingredients {...recipe} />

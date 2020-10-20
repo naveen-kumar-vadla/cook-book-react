@@ -1,3 +1,6 @@
 body {
   background-color: #222324;
 }
+body a:hover {
+  text-decoration: underline;
+}
