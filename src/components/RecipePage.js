@@ -6,6 +6,7 @@ import { useParams, Link } from 'react-router-dom';
 import RecipeAPI from './RecipeAPI.js';
 import notCollectedIcon from '../images/not-collected.svg';
 import CollectedIcon from '../images/collected.svg';
+import BlankPageWithMessage from './BlankPageWithMessage.js';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -169,7 +170,7 @@ const RecipeInfo = ({
   user,
   isCollected,
   id,
-  loggedUser
+  loggedUser,
 }) => {
   const [isCopied, setIsCopied] = useState(false);
   const [isRecipeCollected, setIsRecipeCollected] = useState(isCollected);
@@ -209,21 +210,25 @@ const RecipeInfo = ({
             cols='30'
             style={{ display: 'none' }}
           ></textarea>
-          {loggedUser.username ? isRecipeCollected ? (
-            <img
-              className='collect-action'
-              onClick={() => toggleCollect(id, setIsRecipeCollected)}
-              src={CollectedIcon}
-              alt='collected'
-            ></img>
+          {loggedUser.username ? (
+            isRecipeCollected ? (
+              <img
+                className='collect-action'
+                onClick={() => toggleCollect(id, setIsRecipeCollected)}
+                src={CollectedIcon}
+                alt='collected'
+              ></img>
+            ) : (
+              <img
+                className='collect-action'
+                onClick={() => toggleCollect(id, setIsRecipeCollected)}
+                src={notCollectedIcon}
+                alt='collect'
+              ></img>
+            )
           ) : (
-            <img
-              className='collect-action'
-              onClick={() => toggleCollect(id, setIsRecipeCollected)}
-              src={notCollectedIcon}
-              alt='collect'
-            ></img>
-          ) : ''}
+            ''
+          )}
         </div>
       </UserInfo>
       <InfoTable>
@@ -282,21 +287,14 @@ const RecipePage = () => {
     RecipeAPI.fetchUser().then(setUser);
     RecipeAPI.fetchRecipe(id).then(setRecipe);
   }, [id]);
-  if (recipe == null || loggedUser==null) {
-    return (
-      <React.Fragment>
-        <StyledContainer>
-          <h1>Loading ...</h1>
-        </StyledContainer>
-      </React.Fragment>
-    );
-  }
+  if (recipe == null || loggedUser == null)
+    return <BlankPageWithMessage message='Loading ...' />;
   return (
     <StyledContainer>
       <RecipeName>{recipe.name}</RecipeName>
       <TopContainer>
         <RecipeImage src={recipe.imageUrl} alt={recipe.name} />
-        <RecipeInfo {...recipe} loggedUser={loggedUser}/>
+        <RecipeInfo {...recipe} loggedUser={loggedUser} />
       </TopContainer>
       <BottomContainer>
         <Ingredients {...recipe} />

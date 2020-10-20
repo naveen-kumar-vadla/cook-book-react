@@ -114,12 +114,7 @@ const ProfilePage = () => {
     RecipeAPI.fetchUserProfile(username).then(setUser);
   }, [username]);
   console.log('user', user);
-  if (user == null)
-    return (
-      <StyledContainer>
-        <h1>Loading ...</h1>
-      </StyledContainer>
-    );
+  if (user == null) return <BlankPageWithMessage message='Loading ...' />;
   if (!user.username) return <BlankPageWithMessage message='User Not Found' />;
   return (
     <StyledContainer>

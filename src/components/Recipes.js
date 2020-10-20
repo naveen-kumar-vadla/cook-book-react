@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
+import BlankPageWithMessage from './BlankPageWithMessage.js';
+
 const RecipeCard = ({ className, id, name, imageUrl }) => {
   const recipeName = name.length > 50 ? `${name.slice(0, 50)} ...` : name;
   return (
@@ -50,12 +52,10 @@ const StyledContainer = styled.div`
 `;
 
 const Recipes = ({ recipes }) => {
-  let recipeCards = <h1>Loading ...</h1>;
-  if (recipes != null) {
-    recipeCards = recipes.map(recipe => (
-      <StyledRecipeCard {...recipe} key={recipe.id} />
-    ));
-  }
+  if (recipes == null) return <BlankPageWithMessage message='Loading ...' />;
+  const recipeCards = recipes.map(recipe => (
+    <StyledRecipeCard {...recipe} key={recipe.id} />
+  ));
   return <StyledContainer>{recipeCards}</StyledContainer>;
 };
 
