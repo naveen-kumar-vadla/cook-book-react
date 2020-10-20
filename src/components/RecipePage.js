@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
@@ -16,6 +16,7 @@ import {
   StyledInfoItem,
   MiniProfileImage,
 } from './styledComponents.js';
+import { LoggedUserContext } from '../App.js';
 
 const RecipeImage = styled.img`
   height: 30vh;
@@ -69,7 +70,9 @@ const getCollectAction = (id, isRecipeCollected, setIsRecipeCollected) => {
   return collectAction;
 };
 
-const UserActions = ({ isCollected, id, loggedUser }) => {
+const UserActions = ({ isCollected, id }) => {
+  const loggedUser = useContext(LoggedUserContext);
+  const isUserLoggedIn = loggedUser != null && loggedUser.username;
   const [isCopied, setIsCopied] = useState(false);
   const [isRecipeCollected, setIsRecipeCollected] = useState(isCollected);
   const copyAction = getCopyAction(isCopied, setIsCopied);
@@ -87,7 +90,7 @@ const UserActions = ({ isCollected, id, loggedUser }) => {
         cols='30'
         style={{ display: 'none' }}
       ></textarea>
-      {loggedUser.username ? (
+      {isUserLoggedIn ? (
         <img className='collect-action' alt='' {...collectAction}></img>
       ) : (
         <></>
@@ -96,7 +99,7 @@ const UserActions = ({ isCollected, id, loggedUser }) => {
   );
 };
 
-const PostedUserInfo = ({ className, ...user }) => {
+const UserInfo = ({ className, ...user }) => {
   return (
     <div className={className}>
       <MiniProfileImage {...user} />
@@ -107,7 +110,7 @@ const PostedUserInfo = ({ className, ...user }) => {
   );
 };
 
-const StyledUserInfo = styled(PostedUserInfo)`
+const StyledUserInfo = styled(UserInfo)`
   & {
     display: flex;
   }
@@ -125,11 +128,11 @@ const StyledUserInfo = styled(PostedUserInfo)`
   }
 `;
 
-const UserRow = ({ user, isCollected, id, loggedUser, className }) => {
+const UserRow = ({ user, isCollected, id, className }) => {
   return (
     <div className={className}>
       <StyledUserInfo {...user} />
-      <UserActions {...{ isCollected, id, loggedUser }} />
+      <UserActions {...{ isCollected, id }} />
     </div>
   );
 };
@@ -208,20 +211,17 @@ const Instructions = ({ instructions }) => {
 const RecipePage = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
-  const [loggedUser, setUser] = useState(null);
   useEffect(() => {
-    RecipeAPI.fetchUser().then(setUser);
     RecipeAPI.fetchRecipe(id).then(setRecipe);
   }, [id]);
-  if (recipe == null || loggedUser == null)
-    return <BlankPageWithMessage message='Loading ...' />;
+  if (recipe == null) return <BlankPageWithMessage message='Loading ...' />;
   return (
     <StyledContainer>
       <PageHeader>{recipe.name}</PageHeader>
       <TopContainer>
         <RecipeImage src={recipe.imageUrl} alt={recipe.name} />
         <div style={{ margin: '1rem 3rem 0 0' }}>
-          <StyledUserRow {...recipe} loggedUser={loggedUser} />
+          <StyledUserRow {...recipe} />
           <RecipeStats {...recipe} />
         </div>
       </TopContainer>

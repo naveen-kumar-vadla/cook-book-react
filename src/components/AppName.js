@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import RecipeAPI from './RecipeAPI.js';
 import { MiniProfileImage } from './styledComponents.js';
+import { useContext } from 'react';
+import { LoggedUserContext } from '../App.js';
 
 const AppNameContainer = styled.div`
   border-bottom: 1px solid white;
@@ -85,10 +86,7 @@ const StyledUserOptions = styled(UserOptions)`
 `;
 
 const AppName = () => {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    RecipeAPI.fetchUser().then(setUser);
-  }, []);
+  const user = useContext(LoggedUserContext);
   return (
     <AppNameContainer>
       <Header>
