@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import RecipeAPI from './RecipeAPI.js';
+import { extractInitials } from './helperFunctions.js';
 
 const Heading = styled.div`
   & {
@@ -80,16 +81,6 @@ const Heading = styled.div`
     background-color: #2980b9;
   }
 `;
-
-const extractInitials = function (name) {
-  const firstLetterIdx = 0;
-  const [firstName, secondName] = name.split(' ');
-  const firstLetter = firstName[firstLetterIdx];
-  const profileName = secondName
-    ? firstLetter + secondName[firstLetterIdx]
-    : firstLetter;
-  return profileName.toUpperCase();
-};
 
 const AppName = () => {
   const [user, setUser] = useState(null);

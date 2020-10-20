@@ -10,6 +10,7 @@ import {
   TopContainer,
   PageHeader,
 } from './styledComponents.js';
+import { extractInitials } from './helperFunctions.js';
 
 const UserImage = styled.div`
   & {
@@ -74,16 +75,6 @@ const ProfileInfo = ({ name, username }) => {
       <InfoItem header='Name : ' value={name}></InfoItem>
     </InfoTable>
   );
-};
-
-const extractInitials = function (name) {
-  const firstLetterIdx = 0;
-  const [firstName, secondName] = name.split(' ');
-  const firstLetter = firstName[firstLetterIdx];
-  const profileName = secondName
-    ? firstLetter + secondName[firstLetterIdx]
-    : firstLetter;
-  return profileName.toUpperCase();
 };
 
 const ProfilePage = () => {

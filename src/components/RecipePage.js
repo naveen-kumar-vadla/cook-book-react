@@ -13,6 +13,7 @@ import {
   BottomContainer,
   PageHeader,
 } from './styledComponents.js';
+import { extractInitials } from './helperFunctions.js';
 
 const RecipeImage = styled.img`
   height: 30vh;
@@ -110,16 +111,6 @@ const InfoItem = ({ header, value }) => (
     <span>{value}</span>
   </StyledInfoItem>
 );
-
-const extractInitials = function (name) {
-  const firstLetterIdx = 0;
-  const [firstName, secondName] = name.split(' ');
-  const firstLetter = firstName[firstLetterIdx];
-  const profileName = secondName
-    ? firstLetter + secondName[firstLetterIdx]
-    : firstLetter;
-  return profileName.toUpperCase();
-};
 
 const copyUrl = setIsCopied => {
   setIsCopied(s => !s);
