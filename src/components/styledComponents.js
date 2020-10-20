@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { extractInitials } from './helperFunctions.js';
+
 const StyledContainer = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -13,7 +15,6 @@ const TopContainer = styled.div`
   display: flex;
   justify-content: space-around;
   background-color: #222324;
-  border-bottom: 1px solid #ffffff;
 `;
 
 const BottomContainer = styled.div`
@@ -61,6 +62,51 @@ const StyledInfoItem = styled(InfoItem)`
   }
 `;
 
+const ProfileImage = ({ imageUrl, name, className }) => (
+  <div className={className}>
+    {imageUrl ? (
+      <img src={imageUrl} alt={name} />
+    ) : (
+      <span>{extractInitials(name)}</span>
+    )}
+  </div>
+);
+
+const MiniProfileImage = styled(ProfileImage)`
+  & {
+    position: relative;
+    height: 3rem;
+    width: 3rem;
+    border: 1px solid #ffffff;
+    border-radius: 100%;
+    margin-right: 1rem;
+    overflow: hidden;
+    background-color: gray;
+  }
+  & > img {
+    width: 100%;
+    height: 100%;
+  }
+  & > span {
+    color: #ffffff;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+
+const BigProfileImage = styled(MiniProfileImage)`
+  & {
+    height: 15rem;
+    width: 15rem;
+  }
+  & > span {
+    font-size: 7rem;
+  }
+`;
+
 export {
   StyledContainer,
   TopContainer,
@@ -68,4 +114,6 @@ export {
   PageHeader,
   InfoTable,
   StyledInfoItem,
+  MiniProfileImage,
+  BigProfileImage,
 };

@@ -11,52 +11,29 @@ import {
   PageHeader,
   InfoTable,
   StyledInfoItem,
+  BigProfileImage,
 } from './styledComponents.js';
-import { extractInitials } from './helperFunctions.js';
 
-const UserImage = styled.div`
-  & {
-    position: relative;
-    height: 20rem;
-    width: 20rem;
-    border: 1px solid #ffffff;
-    border-radius: 100%;
-    margin-right: 1rem;
-    overflow: hidden;
-  }
-  & > img {
-    width: 100%;
-    height: 100%;
+const BigStyledInfoItem = styled(StyledInfoItem)`
+  & .header {
+    font-size: 2rem;
   }
   & > span {
-    color: #ffffff;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 10vh;
+    font-size: 1.5rem;
   }
 `;
 
 const ProfileInfo = ({ name, username }) => {
   return (
     <InfoTable>
-      <StyledInfoItem header='Username : ' value={username}></StyledInfoItem>
-      <StyledInfoItem header='Name : ' value={name}></StyledInfoItem>
+      <BigStyledInfoItem
+        header='Username : '
+        value={username}
+      ></BigStyledInfoItem>
+      <BigStyledInfoItem header='Name : ' value={name}></BigStyledInfoItem>
     </InfoTable>
   );
 };
-
-const ProfileImage = ({ imageUrl, name }) => (
-  <UserImage>
-    {imageUrl ? (
-      <img src={imageUrl} alt={name} />
-    ) : (
-      <span>{extractInitials(name)}</span>
-    )}
-  </UserImage>
-);
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -69,7 +46,7 @@ const ProfilePage = () => {
   return (
     <StyledContainer>
       <TopContainer>
-        <ProfileImage {...user} />
+        <BigProfileImage {...user} />
         <ProfileInfo {...user} />
       </TopContainer>
       <PageHeader>Recipes</PageHeader>

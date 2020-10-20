@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import RecipeAPI from './RecipeAPI.js';
-import { extractInitials } from './helperFunctions.js';
+import { MiniProfileImage } from './styledComponents.js';
 
 const AppNameContainer = styled.div`
   border-bottom: 1px solid white;
@@ -40,15 +40,9 @@ const StyledLogInLink = styled(LogInLink)`
 
 const UserOptions = ({ user, className }) => (
   <div className={`dropup ${className}`}>
-    <h3 className='dropupbtn'>
-      <div>
-        {user.imageUrl ? (
-          <img src={user.imageUrl} alt={user.username}></img>
-        ) : (
-          <span>{extractInitials(user.name)}</span>
-        )}
-      </div>
-    </h3>
+    <div className='dropupbtn'>
+      <MiniProfileImage {...user} />
+    </div>
     <div className='dropup-content'>
       <Link to={`/profile/${user.username}`}>Profile</Link>
       <Link to='/collection'>Collection</Link>
@@ -61,6 +55,9 @@ const StyledUserOptions = styled(UserOptions)`
   & {
     position: relative;
     display: inline-block;
+  }
+  & .dropupbtn {
+    margin: 1rem;
   }
   & .dropup-content {
     display: none;
@@ -84,30 +81,6 @@ const StyledUserOptions = styled(UserOptions)`
   }
   &:hover .dropbtn {
     background-color: #2980b9;
-  }
-  & h3 {
-    display: flex;
-  }
-  & h3 > div {
-    position: relative;
-    height: 3rem;
-    width: 3rem;
-    border: 1px solid #ffffff;
-    border-radius: 50%;
-    margin-right: 1rem;
-    overflow: hidden;
-  }
-  & h3 > div > img {
-    width: 100%;
-    height: 100%;
-  }
-  & h3 > div > span {
-    color: #ffffff;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 `;
 

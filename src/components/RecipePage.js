@@ -14,8 +14,8 @@ import {
   PageHeader,
   InfoTable,
   StyledInfoItem,
+  MiniProfileImage,
 } from './styledComponents.js';
-import { extractInitials } from './helperFunctions.js';
 
 const RecipeImage = styled.img`
   height: 30vh;
@@ -42,28 +42,6 @@ const UserInfo = styled.h3`
   }
   & > div {
     display: flex;
-  }
-  & .profile-pic {
-    position: relative;
-    height: 3rem;
-    width: 3rem;
-    border: 1px solid #ffffff;
-    border-radius: 50%;
-    margin-right: 1rem;
-    background-color: gray;
-    overflow: hidden;
-  }
-  & .profile-pic > img {
-    width: 100%;
-    height: 100%;
-  }
-  & .profile-pic > span {
-    color: #ffffff;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
   & > div > a {
     margin: 0.7rem 0rem;
@@ -122,13 +100,7 @@ const RecipeInfo = ({
     <div style={{ margin: '1rem 3rem 0 0' }}>
       <UserInfo>
         <div>
-          <div className='profile-pic'>
-            {user.imageUrl ? (
-              <img src={user.imageUrl} alt={user.username}></img>
-            ) : (
-              <span>{extractInitials(user.name)}</span>
-            )}
-          </div>
+          <MiniProfileImage {...user} />
           <Link to={`/profile/${user.username}`}>
             <span>{user.name}</span>
           </Link>
