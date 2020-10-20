@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { MiniProfileImage } from './styledComponents.js';
+import { UserNameWithMiniProfilepic } from './styledComponents.js';
 import { useContext } from 'react';
 import { LoggedUserContext } from '../App.js';
 
@@ -42,7 +42,7 @@ const StyledLogInLink = styled(LogInLink)`
 const UserOptions = ({ user, className }) => (
   <div className={`dropup ${className}`}>
     <div className='dropupbtn'>
-      <MiniProfileImage {...user} />
+      <UserNameWithMiniProfilepic {...user} isOnLeft={true} />
     </div>
     <div className='dropup-content'>
       <Link to={`/profile/${user.username}`}>Profile</Link>

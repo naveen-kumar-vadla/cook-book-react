@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { extractInitials } from './helperFunctions.js';
@@ -79,7 +80,7 @@ const MiniProfileImage = styled(ProfileImage)`
     width: 3rem;
     border: 1px solid #ffffff;
     border-radius: 100%;
-    margin-right: 1rem;
+    margin: 0 1rem;
     overflow: hidden;
     background-color: gray;
   }
@@ -107,6 +108,39 @@ const BigProfileImage = styled(MiniProfileImage)`
   }
 `;
 
+const UserInfo = ({ className, isOnLeft, ...user }) => {
+  const userName = (
+    <Link to={`/profile/${user.username}`}>
+      <span>{user.username}</span>
+    </Link>
+  );
+  return (
+    <div className={className}>
+      {isOnLeft ? userName : <></>}
+      <MiniProfileImage {...user} />
+      {!isOnLeft ? userName : <></>}
+    </div>
+  );
+};
+
+const UserNameWithMiniProfilepic = styled(UserInfo)`
+  & {
+    display: flex;
+  }
+  & > a {
+    margin: 1rem 0rem;
+    text-decoration: none;
+  }
+  & > a > span {
+    color: #ffffff;
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+  & > a > span:hover {
+    text-decoration: underline;
+  }
+`;
+
 export {
   StyledContainer,
   TopContainer,
@@ -116,4 +150,5 @@ export {
   StyledInfoItem,
   MiniProfileImage,
   BigProfileImage,
+  UserNameWithMiniProfilepic,
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 
 import styled from 'styled-components';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import RecipeAPI from './RecipeAPI.js';
 import notCollectedIcon from '../images/not-collected.svg';
@@ -14,7 +14,7 @@ import {
   PageHeader,
   InfoTable,
   StyledInfoItem,
-  MiniProfileImage,
+  UserNameWithMiniProfilepic,
 } from './styledComponents.js';
 import { LoggedUserContext } from '../App.js';
 
@@ -99,39 +99,10 @@ const UserActions = ({ isCollected, id }) => {
   );
 };
 
-const UserInfo = ({ className, ...user }) => {
-  return (
-    <div className={className}>
-      <MiniProfileImage {...user} />
-      <Link to={`/profile/${user.username}`}>
-        <span>{user.name}</span>
-      </Link>
-    </div>
-  );
-};
-
-const StyledUserInfo = styled(UserInfo)`
-  & {
-    display: flex;
-  }
-  & > a {
-    margin: 0.7rem 0rem;
-    text-decoration: none;
-  }
-  & > a > span {
-    color: #ffffff;
-    text-transform: capitalize;
-    font-weight: bold;
-  }
-  & > a > span:hover {
-    text-decoration: underline;
-  }
-`;
-
 const UserRow = ({ user, isCollected, id, className }) => {
   return (
     <div className={className}>
-      <StyledUserInfo {...user} />
+      <UserNameWithMiniProfilepic {...user} />
       <UserActions {...{ isCollected, id }} />
     </div>
   );
