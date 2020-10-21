@@ -1,8 +1,6 @@
 const fs = require('fs');
 
 const fetchRecipes = () => require('./data.json');
-const storeRecipes = recipes =>
-  fs.writeFileSync('./data.json', JSON.stringify(recipes));
 
 const fetchUsers = () => require('./users.json');
 const storeUsers = users =>
