@@ -14,9 +14,9 @@ const fetchUser = (fieldToMatch, value) => {
   return user ? user : {};
 };
 
-const saveUser = ({ name, login: username, avatar_url: imageUrl }) => {
+const saveUser = ({ name, login: username, avatar_url: profilePicUrl }) => {
   const id = new Date().getTime() * Math.round(Math.random() + 1);
-  const user = { username, name, imageUrl, id, collection: [] };
+  const user = { username, name, profilePicUrl, id, collection: [] };
   const users = fetchUsers();
   users.push(user);
   storeUsers(users);

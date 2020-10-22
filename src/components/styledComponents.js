@@ -63,10 +63,10 @@ const StyledInfoItem = styled(InfoItem)`
   }
 `;
 
-const ProfileImage = ({ imageUrl, name, className }) => (
+const ProfileImage = ({ profilePicUrl, name, className }) => (
   <div className={className}>
-    {imageUrl ? (
-      <img src={imageUrl} alt={name} />
+    {profilePicUrl ? (
+      <img src={profilePicUrl} alt={name} />
     ) : (
       <span>{extractInitials(name)}</span>
     )}
