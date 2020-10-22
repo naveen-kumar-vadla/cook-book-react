@@ -1,7 +1,7 @@
 [
   {
     "name": "fresh applesauce",
-    "imageUrl": "https://www.shopfamilyfare.com/sites/default/files/styles/recipe_thumbnail_responsive_2x/public/recipes/Fresh-applesauce-R.jpg?itok=kS9nGQDG",
+    "recipeImageUrl": "https://www.shopfamilyfare.com/sites/default/files/styles/recipe_thumbnail_responsive_2x/public/recipes/Fresh-applesauce-R.jpg?itok=kS9nGQDG",
     "category": "Breakfast",
     "serves": "6",
     "prepTime": "15",
@@ -24,10 +24,10 @@
   },
   {
     "name": "loaded chilli cheese fries",
-    "imageUrl": "https://www.shopfamilyfare.com/sites/default/files/styles/recipe_thumbnail_responsive_2x/public/recipes/LoadedChiliCheeseFries-catalog.jpg?itok=niLleZCv",
+    "recipeImageUrl": "https://www.shopfamilyfare.com/sites/default/files/styles/recipe_thumbnail_responsive_2x/public/recipes/LoadedChiliCheeseFries-catalog.jpg?itok=niLleZCv",
     "category": "Snacks",
     "serves": "6",
-    "prep-time": "",
+    "prepTime": "",
     "cookTime": "",
     "totalTime": "40",
     "ingredients": [
@@ -52,11 +52,11 @@
   },
   {
     "name": "Superfood salad",
-    "imageUrl": "http://cdn.jamieoliver.com/recipe-database/oldImages/xtra_med/1460_1_1436891540.jpg",
+    "recipeImageUrl": "http://cdn.jamieoliver.com/recipe-database/oldImages/xtra_med/1460_1_1436891540.jpg",
     "category": "Salad",
     "serves": "6",
     "cookTime": "",
-    "prep-time": "",
+    "prepTime": "",
     "totalTime": "40",
     "ingredients": [
       "2 sweet potatoes (350g each)",
@@ -96,10 +96,10 @@
   },
   {
     "name": "Singapore Noodle and Chicken Lettuce Cups",
-    "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Singapore%20noodle%20chicken%20lettuce%20cups_2169.jpg?itok=Jl5iYMKz",
+    "recipeImageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Singapore%20noodle%20chicken%20lettuce%20cups_2169.jpg?itok=Jl5iYMKz",
     "category": "Sauces",
     "serves": "4",
-    "prep-time": "15 minutes",
+    "prepTime": "15 minutes",
     "cookTime": "20",
     "totalTime": "35",
     "ingredients": [
@@ -124,10 +124,10 @@
   },
   {
     "name": "Huevos Rancheros (Mexican baked eggs)",
-    "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Huevos-Rancheros_2709.jpg?itok=efkmy8zT",
+    "recipeImageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Huevos-Rancheros_2709.jpg?itok=efkmy8zT",
     "category": "Brunch",
     "serves": "4",
-    "prep-time": "15",
+    "prepTime": "15",
     "cookTime": "30-35",
     "totalTime": "45-50",
     "ingredients": [
@@ -157,10 +157,10 @@
   },
   {
     "name": "Cauliflower Steaks with Herbed Scramble",
-    "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/cauliflower%20steaks%20with%20herbed%20scramble%202946.jpg?itok=ZNqW_rLh",
+    "recipeImageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/cauliflower%20steaks%20with%20herbed%20scramble%202946.jpg?itok=ZNqW_rLh",
     "category": "Vegetarian",
     "serves": "4",
-    "prep-time": "5",
+    "prepTime": "5",
     "cookTime": "10",
     "totalTime": "15",
     "ingredients": [
@@ -186,10 +186,10 @@
   },
   {
     "name": "AAVOCADO BREAKFAST SMOOTHIE",
-    "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/carousel_large/public/recipe_photo/Smoothie-Avo-Group-Portrait.jpg?itok=k7tcqv1G",
+    "recipeImageUrl": "https://myfoodbook.com.au/sites/default/files/styles/carousel_large/public/recipe_photo/Smoothie-Avo-Group-Portrait.jpg?itok=k7tcqv1G",
     "category": "Drinks",
     "serves": "2-3",
-    "prep-time": "10",
+    "prepTime": "10",
     "cookTime": "",
     "totalTime": "10",
     "ingredients": [
@@ -207,10 +207,10 @@
   },
   {
     "name": "TROPICAL BREAKFAST SMOOTHIE",
-    "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/carousel_large/public/recipe_photo/Smoothie-Avo-Group-Portrait.jpg?itok=k7tcqv1G",
+    "recipeImageUrl": "https://myfoodbook.com.au/sites/default/files/styles/carousel_large/public/recipe_photo/Smoothie-Avo-Group-Portrait.jpg?itok=k7tcqv1G",
     "category": "Drinks",
     "serves": "2-3",
-    "prep-time": "10",
+    "prepTime": "10",
     "cookTime": "",
     "totalTime": "10",
     "ingredients": [
@@ -231,10 +231,10 @@
   },
   {
     "name": "RASPBERRY BREAKFAST SMOOTHIE",
-    "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/carousel_large/public/recipe_photo/Smoothie-Avo-Group-Portrait.jpg?itok=k7tcqv1G",
+    "recipeImageUrl": "https://myfoodbook.com.au/sites/default/files/styles/carousel_large/public/recipe_photo/Smoothie-Avo-Group-Portrait.jpg?itok=k7tcqv1G",
     "category": "Drinks",
     "serves": "2-3",
-    "prep-time": "10",
+    "prepTime": "10",
     "cookTime": "",
     "totalTime": "10",
     "ingredients": [
@@ -253,12 +253,12 @@
   },
   {
     "name": "Chicken and Prawn Pad Thai",
-    "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Pad-Thai_10018.jpg?itok=DC2HXQUy",
+    "recipeImageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Pad-Thai_10018.jpg?itok=DC2HXQUy",
     "category": "Chicken",
     "serves": "4",
-    "prep-time": "20",
-    "cook-time": "20",
-    "total-time": "40",
+    "prepTime": "20",
+    "cookTime": "20",
+    "totalTime": "40",
     "ingredients": [
       "375g pad Thai noodles",
       "2 tbs vegetable oil",
@@ -281,12 +281,12 @@
   },
   {
     "name": "One-pan Coconut Chettinad Prawn Curry",
-    "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/One%20pan%20coconut%20Chettinad%20prawns%202586.jpg?itok=RRTuceRX",
+    "recipeImageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/One%20pan%20coconut%20Chettinad%20prawns%202586.jpg?itok=RRTuceRX",
     "category": "Sea-Food",
     "serves": "4",
-    "prep-time": "10",
-    "cook-time": "20",
-    "total-time": "30",
+    "prepTime": "10",
+    "cookTime": "20",
+    "totalTime": "30",
     "ingredients": [
       "450g peeled, deveined green king prawns",
       "225g pkt Street Kitchen Coconut Chicken Chettinad Kit",
@@ -310,12 +310,12 @@
   },
   {
     "name": "Chicken Fried Rice with Sliced Egg Omelette",
-    "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Chicken%20fried%20rice%202560_0.jpg?itok=kVwsKTAp",
+    "recipeImageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Chicken%20fried%20rice%202560_0.jpg?itok=kVwsKTAp",
     "category": "Rice",
     "serves": "4",
-    "prep-time": "15",
-    "cook-time": "15",
-    "total-time": "30",
+    "prepTime": "15",
+    "cookTime": "15",
+    "totalTime": "30",
     "ingredients": [
       "2 tablespoons peanut oil",
       "4 eggs, lightly beaten",
@@ -342,12 +342,12 @@
   },
   {
     "name": "Tea eggs with Asian noodles",
-    "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Tea-eggs_3326.jpg?itok=C8Z1unmk",
+    "recipeImageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Tea-eggs_3326.jpg?itok=C8Z1unmk",
     "category": "Noodles",
     "serves": "4",
-    "prep-time": "15 (plus 120min for cooling)",
-    "cook-time": "20",
-    "total-time": "35 (plus 120min for cooling)",
+    "prepTime": "15 (plus 120min for cooling)",
+    "cookTime": "20",
+    "totalTime": "35 (plus 120min for cooling)",
     "ingredients": [
       "1 tablespoon Chinese five spice",
       "1 cup (250ml) dark soy",
@@ -378,12 +378,12 @@
   },
   {
     "name": "Persian Love Cake",
-    "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Australian%20Eggs%20Persian%20Love%20Cake%202.jpg?itok=3cflzKzI",
+    "recipeImageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Australian%20Eggs%20Persian%20Love%20Cake%202.jpg?itok=3cflzKzI",
     "category": "Cakes",
     "serves": "12",
-    "prep-time": "35",
-    "cook-time": "55 (plus cooling time)",
-    "total-time": "90",
+    "prepTime": "35",
+    "cookTime": "55 (plus cooling time)",
+    "totalTime": "90",
     "ingredients": [
       "2 cups (240g) almond meal",
       "¾ cup (110g) self-raising flour",
@@ -415,12 +415,12 @@
   },
   {
     "name": "Easy Custard Berry Trifle",
-    "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Custard-berry-trifle_3150.jpg?itok=iOxdGGpZ",
+    "recipeImageUrl": "https://myfoodbook.com.au/sites/default/files/styles/single_recipe/public/recipe_photo/Custard-berry-trifle_3150.jpg?itok=iOxdGGpZ",
     "category": "Dessert",
     "serves": "6",
-    "prep-time": "25",
-    "cook-time": "10",
-    "total-time": "35",
+    "prepTime": "25",
+    "cookTime": "10",
+    "totalTime": "35",
     "ingredients": [
       "300ml pure cream",
       "300ml milk",

@@ -191,7 +191,7 @@ const RecipePage = () => {
     <StyledContainer>
       <PageHeader>{recipe.name}</PageHeader>
       <TopContainer>
-        <RecipeImage src={recipe.imageUrl} alt={recipe.name} />
+        <RecipeImage src={recipe.recipeImageUrl} alt={recipe.name} />
         <div style={{ margin: '1rem 3rem 0 0' }}>
           <StyledUserRow {...recipe} />
           <RecipeStats {...recipe} />

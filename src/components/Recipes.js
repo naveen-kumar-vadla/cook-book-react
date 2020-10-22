@@ -6,11 +6,11 @@ import styled from 'styled-components';
 import BlankPageWithMessage from './BlankPageWithMessage.js';
 import { StyledContainer } from './styledComponents.js';
 
-const RecipeCard = ({ className, id, name, imageUrl }) => {
+const RecipeCard = ({ className, id, name, recipeImageUrl }) => {
   const recipeName = name.length > 50 ? `${name.slice(0, 50)} ...` : name;
   return (
     <div className={className}>
-      <img src={imageUrl} alt={name}></img>
+      <img src={recipeImageUrl} alt={name}></img>
       <Link to={`/recipe/${id}`}>
         <h3>{recipeName}</h3>
       </Link>
