@@ -151,7 +151,7 @@ const RecipeStats = ({ category, serves, prepTime, cookTime, totalTime }) => {
   );
 };
 
-const Ingredients = ({ ingredients }) => {
+const Ingredients = ({ ingredients = [] }) => {
   const details = ingredients.map((ingredient, i) => (
     <li key={`ingredient-${i}`}>
       <StyledInfoItem value={ingredient} />
@@ -165,7 +165,7 @@ const Ingredients = ({ ingredients }) => {
   );
 };
 
-const Instructions = ({ instructions }) => {
+const Instructions = ({ instructions = [] }) => {
   const details = instructions.map((instruction, i) => (
     <li key={`instruction-${i}`}>
       <StyledInfoItem value={instruction} />
@@ -186,6 +186,7 @@ const RecipePage = () => {
     RecipeAPI.fetchRecipe(id).then(setRecipe);
   }, [id]);
   if (recipe == null) return <BlankPageWithMessage message='Loading ...' />;
+  console.log('recipe', recipe);
   return (
     <StyledContainer>
       <PageHeader>{recipe.name}</PageHeader>

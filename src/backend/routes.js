@@ -12,15 +12,15 @@ app.use(cookieEncrypter(COOKIE_SECRET));
 app.use(handlers.logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.get('/api/recipes', handlers.serveRecipes);
-app.get('/api/recipe/:id', handlers.serveRecipe);
-app.get('/api/fetchUser', handlers.serveUser);
-app.get('/api/fetUserCollection', handlers.serveUserCollection);
+app.get('/api/recipes/', handlers.serveRecipes);
+app.get('/api/recipes/recipe/:id', handlers.serveRecipe);
+app.get('/api/user/', handlers.serveUser);
+app.get('/api/user/toggleCollect/:id', handlers.toggleCollect);
+app.get('/api/user/fetUserCollection', handlers.serveUserCollection);
+app.get('/api/user/profile/:username', handlers.serveUserProfile);
 app.get('/api/signIn', handlers.authorizeUser);
 app.get('/api/logout', handlers.logout);
 app.get('/api/oauth-callback', handlers.loginUser);
-app.get('/api/profile/:username', handlers.serveUserProfile);
-app.get('/api/toggleCollect/:id', handlers.toggleCollect);
 
 module.exports = app;
 
