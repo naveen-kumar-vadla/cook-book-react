@@ -110,7 +110,7 @@ const BigProfileImage = styled(MiniProfileImage)`
 
 const UserInfo = ({ className, isOnLeft, ...user }) => {
   const userName = (
-    <Link to={`/profile/${user.username}`}>
+    <Link to={`/profile/${user.id}`}>
       <span>{user.username}</span>
     </Link>
   );

@@ -45,7 +45,7 @@ const UserOptions = ({ user, className }) => (
       <UserNameWithMiniProfilepic {...user} isOnLeft={true} />
     </div>
     <div className='dropup-content'>
-      <Link to={`/profile/${user.username}`}>Profile</Link>
+      <Link to={`/profile/${user.id}`}>Profile</Link>
       <Link to={`/collection/${user.id}`}>Collection</Link>
       <a href='http://localhost:7000/api/logout'>Logout</a>
     </div>

@@ -36,11 +36,11 @@ const ProfileInfo = ({ name, username }) => {
 };
 
 const ProfilePage = () => {
-  const { username } = useParams();
+  const { userId } = useParams();
   const [userProfile, setUserProfile] = useState(null);
   useEffect(() => {
-    RecipeAPI.fetchUserProfile(username).then(setUserProfile);
-  }, [username]);
+    RecipeAPI.fetchUserProfile(userId).then(setUserProfile);
+  }, [userId]);
   if (userProfile == null) return <BlankPageWithMessage message='Loading ...' />;
   const { user, recipes } = userProfile;
   if (!user.username) return <BlankPageWithMessage message='User Not Found' />;

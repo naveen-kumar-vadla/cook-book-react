@@ -13,7 +13,7 @@ RecipeAPI.toggleCollect = id =>
 RecipeAPI.fetUserCollection = id =>
   fetch(`/api/user/collection/${id}`).then(x => x.json());
 
-RecipeAPI.fetchUserProfile = username =>
-  fetch(`/api/user/profile/${username}`).then(x => x.json());
+RecipeAPI.fetchUserProfile = id =>
+  fetch(`/api/user/profile/${id}`).then(x => x.json());
 
 export default RecipeAPI;

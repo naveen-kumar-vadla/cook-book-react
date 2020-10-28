@@ -32,7 +32,7 @@ const App = () => {
           <Route exact path='/collection/:userId'>
             <CollectionPage />
           </Route>
-          <Route exact path='/profile/:username'>
+          <Route exact path='/profile/:userId'>
             <ProfilePage />
           </Route>
           <Route path='*'>
