@@ -37,11 +37,12 @@ const ProfileInfo = ({ name, username }) => {
 
 const ProfilePage = () => {
   const { username } = useParams();
-  const [user, setUser] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
   useEffect(() => {
-    RecipeAPI.fetchUserProfile(username).then(setUser);
+    RecipeAPI.fetchUserProfile(username).then(setUserProfile);
   }, [username]);
-  if (user == null) return <BlankPageWithMessage message='Loading ...' />;
+  if (userProfile == null) return <BlankPageWithMessage message='Loading ...' />;
+  const { user, recipes } = userProfile;
   if (!user.username) return <BlankPageWithMessage message='User Not Found' />;
   return (
     <StyledContainer>
@@ -50,7 +51,7 @@ const ProfilePage = () => {
         <ProfileInfo {...user} />
       </TopContainer>
       <PageHeader>Recipes</PageHeader>
-      <Recipes recipes={user.recipes} />
+      <Recipes recipes={recipes} />
     </StyledContainer>
   );
 };
