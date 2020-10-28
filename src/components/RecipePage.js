@@ -46,12 +46,6 @@ const copyUrl = setIsCopied => {
   Url.style['display'] = 'none';
 };
 
-const toggleCollect = (id, setIsRecipeCollected) => {
-  RecipeAPI.toggleCollect(id).then(({ isCollected }) => {
-    setIsRecipeCollected(isCollected);
-  });
-};
-
 const getCopyAction = (isCopied, setIsCopied) => {
   const copyAction = {};
   copyAction.src = isCopied
@@ -62,11 +56,11 @@ const getCopyAction = (isCopied, setIsCopied) => {
   return copyAction;
 };
 
-const getCollectAction = (id, isRecipeCollected, setIsRecipeCollected) => {
+const getCollectAction = (id, isRecipeCollected) => {
   const collectAction = {};
   collectAction.src = isRecipeCollected ? CollectedIcon : notCollectedIcon;
   collectAction.alt = isRecipeCollected ? 'collected' : 'collect';
-  collectAction.onClick = () => toggleCollect(id, setIsRecipeCollected);
+  collectAction.onClick = () => RecipeAPI.toggleCollect(id, isRecipeCollected).then(a=>console.log('a', a));
   return collectAction;
 };
 
@@ -74,13 +68,8 @@ const UserActions = ({ isCollected, id }) => {
   const loggedUser = useContext(LoggedUserContext);
   const isUserLoggedIn = loggedUser != null && loggedUser.username;
   const [isCopied, setIsCopied] = useState(false);
-  const [isRecipeCollected, setIsRecipeCollected] = useState(isCollected);
   const copyAction = getCopyAction(isCopied, setIsCopied);
-  const collectAction = getCollectAction(
-    id,
-    isRecipeCollected,
-    setIsRecipeCollected
-  );
+  const collectAction = getCollectAction(id, isCollected);
   return (
     <div className='actions'>
       <img className='share-action' alt='' {...copyAction}></img>
@@ -186,7 +175,6 @@ const RecipePage = () => {
     RecipeAPI.fetchRecipe(id).then(setRecipe);
   }, [id]);
   if (recipe == null) return <BlankPageWithMessage message='Loading ...' />;
-  console.log('recipe', recipe);
   return (
     <StyledContainer>
       <PageHeader>{recipe.name}</PageHeader>

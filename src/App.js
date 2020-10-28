@@ -29,7 +29,7 @@ const App = () => {
           <Route exact path='/recipe/:id'>
             <RecipePage />
           </Route>
-          <Route exact path='/collection'>
+          <Route exact path='/collection/:userId'>
             <CollectionPage />
           </Route>
           <Route exact path='/profile/:username'>
