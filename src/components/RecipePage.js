@@ -60,7 +60,10 @@ const getCollectAction = (id, isRecipeCollected) => {
   const collectAction = {};
   collectAction.src = isRecipeCollected ? CollectedIcon : notCollectedIcon;
   collectAction.alt = isRecipeCollected ? 'collected' : 'collect';
-  collectAction.onClick = () => RecipeAPI.toggleCollect(id, isRecipeCollected).then(a=>console.log('a', a));
+  collectAction.onClick = () =>
+    RecipeAPI.toggleCollect(id, isRecipeCollected).then(a =>
+      console.log('a', a)
+    );
   return collectAction;
 };
 
@@ -119,7 +122,8 @@ const StyledUserRow = styled(UserRow)`
   }
 `;
 
-const RecipeStats = ({ category, serves, prepTime, cookTime, totalTime }) => {
+const RecipeStats = recipe => {
+  const { category, serves, prepTime, cookTime, rating, totalTime } = recipe;
   return (
     <InfoTable>
       <StyledInfoItem header='Category : ' value={category} />
@@ -136,6 +140,7 @@ const RecipeStats = ({ category, serves, prepTime, cookTime, totalTime }) => {
         header='Ready In : '
         value={totalTime ? `${totalTime} minutes` : totalTime}
       />
+      <StyledInfoItem header='Rating : ' value={`(${rating}) ${Array(rating).fill("⭐").join(' ')}`} />
     </InfoTable>
   );
 };
